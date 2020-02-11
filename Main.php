@@ -28,6 +28,22 @@
                 $db = null;
                 ?>
             </select> <!-- ending a select type input-->
+
+            <label for="Rating">Select an ESRB rating: </label> <!-- creating a label-->
+            <select name="Rating" id="Rating"> <!-- making a select type input-->
+                <?php
+                $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
+                $query = 'SELECT Rating FROM Ratings;';
+                $newQuery = $db->prepare($query);
+                $newQuery->execute();
+                $Rating = $newQuery->fetchAll();
+
+                foreach ($Rating as $value)
+                    echo '<option>' . $value['Rating'] . '</option>';
+
+                $db = null;
+                ?>
+        </select> <!-- ending a select type input-->
     </fieldset> <!-- ending fieldset tag-->
 </form> <!-- ending form tag-->
 </body> <!-- Ending body tag-->
