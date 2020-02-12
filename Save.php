@@ -5,6 +5,7 @@
     <title>Saved Database</title> <!-- Creating a title tag-->
 </head> <!-- Ending head tag-->
 <body> <!-- Starting body tag-->
+<center> <!-- making everything center starting tag-->
 <h1><strong>Video Games</strong></h1> <!-- Video Games header-->
 <?php
 $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
@@ -27,5 +28,6 @@ foreach($favGame as $value){
 $db = null;
 //shut down the database
 ?>
+</center> <!-- making everything center ending tag-->
 </body> <!-- Ending body tag-->
 </html> <!-- Ending HTML tag-->
