@@ -5,16 +5,16 @@
     <title>Assignment 1</title> <!-- Creating a title tag-->
 </head> <!-- Ending head tag-->
 <body> <!-- Starting body tag-->
+<center>
 <h1><strong>Video Games</strong></h1> <!-- Video Games header-->
 <img src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/2NI3ACSRWBHFVDDHRDKDQDVMEA.jpg&w=767" alt="Video-Games-Photo"> <!-- calls an external image-->
-<form> <!-- starting form tag-->
+<form action="SavingData.php"> <!-- starting form tag-->
     <fieldset> <!-- starting fieldset tag-->
         <legend>What is your favourite video game?</legend> <!-- creating a legend-->
             <label for="title">Game title: </label> <!-- creating a label-->
             <input type="text" id="title" placeholder= "Call of Duty" name="title" required> <!-- making an text input-->
-
-            <label for="Console">Select a console: </label> <!-- creating a label-->
-            <select name="Console" id="Console"> <!-- making a select type input-->
+            <label for="console">Select a console: </label> <!-- creating a label-->
+            <select name="console" id="console"> <!-- making a select type input-->
                 <?php
                 $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
                 $query = 'SELECT console FROM consoles;';
@@ -40,11 +40,12 @@
 
                 foreach ($Rating as $value)
                     echo '<option>' . $value['Rating'] . '</option>';
-
                 $db = null;
                 ?>
         </select> <!-- ending a select type input-->
+        <a href="SavingData.php">Save</a>
     </fieldset> <!-- ending fieldset tag-->
 </form> <!-- ending form tag-->
+</center>
 </body> <!-- Ending body tag-->
 </html> <!-- Ending HTML tag-->
