@@ -1,3 +1,25 @@
+<?php
+$video_game_id = null;
+$title = null;
+$console = null;
+$rating = null;
+
+if(!empty($_GET['video_game_id'])){
+    $video_game_id = ($_GET['video_game_id']);
+
+    $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
+    $query = 'SELECT * FROM assignment1 WHERE video_game_id = :video_game_id;';
+    $newQuery = $db->prepare($query);
+    $newQuery->bindParam(':video_game_id', $video_game_id, PDO::PARAM_INT);
+    $newQuery->execute();
+    $records = $newQuery->fetch();
+    $title = $records['title'];
+    $console = $records['console'];
+    $rating = $records['rating'];
+    $db = null;
+}
+?>
+
 <!DOCTYPE html> <!-- DOCTYPE tag-->
 <html lang='en'> <!-- Starting HTML tag-->
 <head> <!-- Starting head tag-->
@@ -25,9 +47,9 @@
     <fieldset> <!-- starting fieldset tag-->
         <legend>What is your favourite video game?</legend> <!-- creating a legend-->
             <label for="title">Game title: </label> <!-- creating a label-->
-            <input type="text" id="title" name="title"> <!-- making an text input-->
+            <input type="text" id="title" name="title" value="<?php echo $title; ?>"> <!-- making an text input-->
             <label for="console">Select a console: </label> <!-- creating a label-->
-            <select name="console" id="console"> <!-- making a select type input-->
+            <select name="console" id="console" value="<?php echo $console; ?>"> <!-- making a select type input-->
                 <?php
                 $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
                 //connecting to my database
@@ -50,7 +72,7 @@
             </select> <!-- ending a select type input-->
 
             <label for="Rating">Select an ESRB rating: </label> <!-- creating a label-->
-            <select name="Rating" id="Rating"> <!-- making a select type input-->
+            <select name="Rating" id="Rating" value="<?php echo $rating; ?>"> <!-- making a select type input-->
                 <?php
                 $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
                 //connecting to my database
@@ -70,6 +92,7 @@
                 //shut down the database
                 ?>
         </select> <!-- ending a select type input-->
+        <input name="video_game_id" value="<?php echo $video_game_id; ?>" type="hidden"/>
         <input type="submit"> <!-- creating a submit button-->
     </fieldset> <!-- ending fieldset tag-->
 </form> <!-- ending form tag-->
