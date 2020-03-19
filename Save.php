@@ -6,6 +6,19 @@
 </head> <!-- Ending head tag-->
 <body> <!-- Starting body tag-->
 <center> <!-- making everything center starting tag-->
+    <header>
+        <nav>
+            <div>
+                <a href="Home.php">Home</a>
+            </div>
+            <div>
+                <a href="Main.php">Input</a>
+            </div>
+            <div>
+                <a href="Save.php">Database</a>
+            </div>
+        </nav>
+    </header>
 <h1><strong>Video Games</strong></h1> <!-- Video Games header-->
 <?php
 $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');

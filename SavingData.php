@@ -36,4 +36,4 @@ $newQuery->execute();
 $db = null;
 //shut down the database
 header('location:Save.php');
-//load the page to see the table
+//load the page to see the table  

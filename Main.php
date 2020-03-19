@@ -6,6 +6,19 @@
 </head> <!-- Ending head tag-->
 <body> <!-- Starting body tag-->
 <center> <!-- making everything center starting tag-->
+    <header>
+        <nav>
+            <div>
+                <a href="Home.php">Home</a>
+            </div>
+            <div>
+                <a href="Main.php">Input</a>
+            </div>
+            <div>
+                <a href="Save.php">Database</a>
+            </div>
+        </nav>
+    </header>
 <h1><strong>Video Games</strong></h1> <!-- Video Games header-->
 <img src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/2NI3ACSRWBHFVDDHRDKDQDVMEA.jpg&w=767" alt="Video-Games-Photo"> <!-- calls an external image-->
 <form action="SavingData.php" method="post"> <!-- starting form tag-->
