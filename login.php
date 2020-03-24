@@ -1,0 +1,42 @@
+<!DOCTYPE html> <!-- DOCTYPE tag-->
+<html lang='en'> <!-- Starting HTML tag-->
+<head> <!-- Starting head tag-->
+    <meta charset='UTF-8'> <!-- using utf-8 charset tag-->
+    <title>Login</title> <!-- Creating a title tag-->
+</head> <!-- Ending head tag-->
+<body> <!-- Starting body tag-->
+<center> <!-- making everything center starting tag-->
+    <header>
+        <nav>
+            <div>
+                <a href="Home.php">Home</a>
+            </div>
+            <div>
+                <a href="Main.php">Input</a>
+            </div>
+            <div>
+                <a href="Save.php">Database</a>
+            </div>
+            <div>
+                <a href="login.php">Login</a>
+            </div>
+            <div>
+                <a href="Register.php">Register</a>
+            </div>
+        </nav>
+    </header>
+    <h1>Login</h1>
+    <form method="post" action="ValidateUser.php">
+        <fieldset>
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" required> <!-- making an text input-->
+
+            <label for="password">Password: </label>
+            <input type="text" id="password" name="password" required> <!-- making an text input-->
+
+        </fieldset>
+        <input type="submit">
+    </form>
+</center> <!-- making everything center ending tag-->
+</body> <!-- Ending body tag-->
+</html> <!-- Ending HTML tag-->
