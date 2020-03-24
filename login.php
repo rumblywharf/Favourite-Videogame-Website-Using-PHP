@@ -1,3 +1,9 @@
+<?php
+if($_GET['incorrectPassword'] == 'true')
+    echo 'Invalid Login';
+else
+    echo "Please Login";
+?>
 <!DOCTYPE html> <!-- DOCTYPE tag-->
 <html lang='en'> <!-- Starting HTML tag-->
 <head> <!-- Starting head tag-->
@@ -32,7 +38,7 @@
             <input type="text" id="username" name="username" required> <!-- making an text input-->
 
             <label for="password">Password: </label>
-            <input type="text" id="password" name="password" required> <!-- making an text input-->
+            <input type="password" id="password" name="password" required> <!-- making an text input-->
 
         </fieldset>
         <input type="submit">

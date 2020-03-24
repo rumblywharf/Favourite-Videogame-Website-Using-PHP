@@ -26,10 +26,10 @@
             <input type="text" id="username" name="username" required> <!-- making an text input-->
 
             <label for="password">Password: </label>
-            <input type="text" id="password" name="password" required> <!-- making an text input-->
+            <input type="password" id="password" name="password" required> <!-- making an text input-->
 
             <label for="confirm">Confirm Password: </label>
-            <input type="text" id="confirm" name="confirm" required> <!-- making an text input-->
+            <input type="password" id="confirm" name="confirm" required> <!-- making an text input-->
         </fieldset>
         <input type="submit">
     </form>

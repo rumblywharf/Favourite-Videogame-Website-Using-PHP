@@ -18,16 +18,24 @@ if($confirm != $password){
 
 if($check){
     $password = password_hash($password, PASSWORD_DEFAULT);
-    echo $password;
-
     $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
-    $query = 'INSERT INTO users (username, password) VALUES (:username, :password);';
+
+    $query = 'SELECT * FROM users WHERE username = :username;';
     $newQuery = $db->prepare($query);
     $newQuery->bindParam(':username', $username, PDO::PARAM_STR, 100);
-    $newQuery->bindParam(':password', $password, PDO::PARAM_STR, 255);
     $newQuery->execute();
-    $db = null;
+    $users = $newQuery->fetch();
 
+    if(empty($user)) {
+        $query = 'INSERT INTO users (username, password) VALUES (:username, :password);';
+        $newQuery = $db->prepare($query);
+        $newQuery->bindParam(':username', $username, PDO::PARAM_STR, 100);
+        $newQuery->bindParam(':password', $password, PDO::PARAM_STR, 255);
+        $newQuery->execute();
+    }
+    else
+        echo "Username is already in use";
+    $db = null;
     header('location:login.php');
 }
 ?>
