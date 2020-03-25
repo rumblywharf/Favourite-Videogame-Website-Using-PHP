@@ -11,12 +11,25 @@
             <div>
                 <a href="Home.php">Home</a>
             </div>
-            <div>
-                <a href="Main.php">Input</a>
-            </div>
+                <?php
+                session_start();
+                if(empty($_SESSION['usersID'])) {
+                    echo '<div><a href="Main.php">Input</a></div>';
+                }
+                ?>
             <div>
                 <a href="Save.php">Database</a>
             </div>
+            <?php
+            if(empty($_SESSION['usersID'])) {
+                echo
+               '<div><a href = "login.php">Login</a></div >
+            <div><a href = "Register.php">Register</a></div>';
+            }
+            else{
+                echo '<div><a href = "logout.php">Logout</a></div>';
+            }
+            ?>
         </nav>
     </header>
 <h1><strong>Video Games</strong></h1> <!-- Video Games header-->
@@ -31,11 +44,16 @@ $newQuery->execute();
 //execute the new variable
 $favGame = $newQuery->fetchAll();
 //fetch the new query from teams
-echo '<table border="1"><thead><th>Title</th><th>Console</th><th>Rating</th><th>Edit</th><th>Delete</th></thead>';
+echo '<table border="1"><thead><th>Title</th><th>Console</th><th>Rating</th>';
+if(!empty($_SESSION['usersID']))
+    echo '<th>Edit</th><th>Delete</th>';
+echo '</thead>';
 //creating the table with one border and all 3 different headers
 foreach($favGame as $value){
     //for each heading from the pulled query, check for a value
-    echo '<tr> <td>' . $value['title'] . '</td> <td>' . $value['console'] . '</td> <td>' . $value['rating'] . '</td> <td><a href = "Main.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmEdit();">Edit</a></td> <td><a href = "delete.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmDelete();">Delete</a></td></tr>';
+    echo '<tr> <td>' . $value['title'] . '</td> <td>' . $value['console'] . '</td> <td>' . $value['rating'] . '</td>';
+if(!empty($_SESSION['usersID']))
+    echo '<td><a href = "Main.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmEdit();">Edit</a></td> <td><a href = "delete.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmDelete();">Delete</a></td></tr>';
     //<tr> tag goes around the values as a whole and each heading, it must be in a <td> tag, while connecting each tag with a period
 }
 $db = null;

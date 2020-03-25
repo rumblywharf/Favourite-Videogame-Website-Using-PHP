@@ -7,17 +7,30 @@
 <body> <!-- Starting body tag-->
 <center> <!-- making everything center starting tag-->
     <header>
-    <nav>
-        <div>
-            <a href="Home.php">Home</a>
-        </div>
-        <div>
-            <a href="Main.php">Input</a>
-        </div>
-        <div>
-            <a href="Save.php">Database</a>
-        </div>
-    </nav>
+        <nav>
+            <div>
+                <a href="Home.php">Home</a>
+            </div>
+            <?php
+            session_start();
+            if(empty($_SESSION['usersID'])) {
+                echo '<div><a href="Main.php">Input</a></div>';
+            }
+            ?>
+            <div>
+                <a href="Save.php">Database</a>
+            </div>
+            <?php
+            if(empty($_SESSION['usersID'])) {
+                echo
+                '<div ><a href = "login.php" > Login</a ></div >
+            <div ><a href = "Register.php" > Register</a ></div >';
+            }
+            else{
+                echo '<div ><a href = "logout.php" > Logout</a ></div >';
+            }
+            ?>
+        </nav>
     </header>
     <h1>Home</h1>
     <h5>This page keeps track of everyone's favourite video games including the games title, the preferred console, as well as the games ESRB rating. When you click "Home", the website will direct you to this home page where I give a quick rundown of the websites purpose and integrity. On the "Input" page is where you are able to enter in your favourite video games and their given console and ESRB rating. Lastly, on the "Database" page you will find all stored video games with their given information. The integrity of this website is to bring gamers together to see everyone's favourite video game.</h5>

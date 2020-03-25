@@ -1,8 +1,16 @@
+<?php
+session_start();
+if(empty($_SESSION['usersID'])) {
+    header('location:login.php');
+    exit();
+}
+?>
 <!DOCTYPE html> <!-- DOCTYPE tag-->
 <html lang='en'> <!-- Starting HTML tag-->
 <head> <!-- Starting head tag-->
     <meta charset='UTF-8'> <!-- using utf-8 charset tag-->
-    <title></title></head>
+    <title>Deleting your data</title>
+</head>
 <body>
 <?php
 $video_game_id = $_GET['video_game_id'];
