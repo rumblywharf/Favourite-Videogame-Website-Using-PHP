@@ -9,6 +9,9 @@ if(empty($_SESSION['usersID'])) {
 <html lang='en'> <!-- Starting HTML tag-->
 <head> <!-- Starting head tag-->
     <meta charset='UTF-8'> <!-- using utf-8 charset tag-->
+    <link rel="stylesheet" href="style.css">
+    <!--    found the css at: https://www.free-css.com/free-css-templates/page246/freshshop-->
+
     <title>Deleting your data</title>
 </head>
 <body>
