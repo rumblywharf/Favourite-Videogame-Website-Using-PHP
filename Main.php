@@ -6,6 +6,8 @@ $video_game_id = null;
 $title = null;
 $console = null;
 $rating = null;
+$picture = null;
+$file = null;
 
 if(!empty($_GET['video_game_id'])){
     $video_game_id = ($_GET['video_game_id']);
@@ -19,6 +21,8 @@ if(!empty($_GET['video_game_id'])){
     $title = $records['title'];
     $console = $records['console'];
     $rating = $records['rating'];
+    $picture = $records['photo'];
+    $file = $_FILES['file'];
     $db = null;
 }
 ?>
@@ -36,31 +40,26 @@ if(!empty($_GET['video_game_id'])){
             <div>
                 <a href="Home.php">Home</a>
             </div>
-            <?php
-            session_start();
-            if(empty($_SESSION['usersID'])) {
-                echo '<div><a href="Main.php">Input</a></div>';
-                exit();
-            }
-            ?>
+            <div><a href="Main.php">Input</a></div>
             <div>
                 <a href="Save.php">Database</a>
             </div>
             <?php
+            session_start();
             if(empty($_SESSION['usersID'])) {
                 echo
-                '<div ><a href = "login.php" > Login</a ></div >
-            <div ><a href = "Register.php" > Register</a ></div >';
+                '<div><a href = "login.php">Login</a></div >
+            <div><a href = "Register.php">Register</a></div>';
             }
             else{
-                echo '<div ><a href = "logout.php" > Logout</a ></div >';
+                echo '<div><a href = "logout.php">Logout</a></div>';
             }
             ?>
         </nav>
     </header>
 <h1><strong>Video Games</strong></h1> <!-- Video Games header-->
 <img src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/2NI3ACSRWBHFVDDHRDKDQDVMEA.jpg&w=767" alt="Video-Games-Photo"> <!-- calls an external image-->
-<form action="SavingData.php" method="post"> <!-- starting form tag-->
+<form action="SavingData.php" method="post" enctype="multipart/form-data"> <!-- starting form tag-->
     <fieldset> <!-- starting fieldset tag-->
         <legend>What is your favourite video game?</legend> <!-- creating a legend-->
             <label for="title">Game title: </label> <!-- creating a label-->
@@ -110,6 +109,15 @@ if(!empty($_GET['video_game_id'])){
                 ?>
         </select> <!-- ending a select type input-->
         <input name="video_game_id" value="<?php echo $video_game_id; ?>" type="hidden"/>
+
+        <label for="file">Choose a file: </label>
+        <input type="file" id="file" name="file" value="<?php echo $file; ?>">
+
+        <?php
+        if(!empty($picture)){
+            echo '<img src="uploads/' . $picture . '" alt="uploadedImage"/>';
+        }
+        ?>
         <input type="submit"> <!-- creating a submit button-->
     </fieldset> <!-- ending fieldset tag-->
 </form> <!-- ending form tag-->

@@ -12,6 +12,9 @@ else {
     $title = $_POST['title'];
 //creating a saved variable for title
     $video_game_id = $_POST['video_game_id'];
+    $name = null;
+    $picture = $_FILES['pictures'];
+    $fileTempName = $file['tmp_name'];
 
     $validate = true;
 //making a new validate boolean variable that is automatically true
@@ -24,12 +27,27 @@ else {
         $validate = false;
     }
 //if the titles length is longer than 100 characters then return the variable false
+
+    if(!empty($fileTempName)) {
+        $file = $_FILES['file'];
+        $fileName = $file['name'];
+        $fileType = mime_content_type($fileTempName);
+        $fileSize = $file['size'];
+        if ($fileType != 'uploads/jpeg' && $fileType != 'uploads/jpeg') {
+            echo 'Your image must be in the .jpg or .png file';
+            $validate = false;
+            exit();
+        }
+        $name = session_id() . '-' . $fileName;
+        move_uploaded_file($fileTempName, "uploads/$name");
+
+    }
     if ($validate) {
         $db = new PDO('mysql:host=172.31.22.43;dbname=Cameron_R1106175', 'Cameron_R1106175', '7N8VChxI8o');
         if (empty($video_game_id)) {
-            $query = 'INSERT INTO assignment1 (title, console, rating) VALUES (:title, :console, :rating);';
+            $query = 'INSERT INTO assignment1 (title, console, rating, pictures) VALUES (:title, :console, :rating, :picture);';
         } else {
-            $query = 'UPDATE assignment1 SET title = :title, console = :console, rating = :rating WHERE video_game_id = :video_game_id;';
+            $query = 'UPDATE assignment1 SET title = :title, console = :console, rating = :rating, pictures = :picture WHERE video_game_id = :video_game_id;';
         }
     } //if the variable is true then connect to the database and run the insert command
     else {
@@ -41,6 +59,7 @@ else {
     $newQuery->bindParam(':title', $title, PDO::PARAM_STR, 100);
     $newQuery->bindParam(':console', $console, PDO::PARAM_STR, 500);
     $newQuery->bindParam(':rating', $rating, PDO::PARAM_STR, 10);
+    $newQuery->bindParam(':pictures', $picture, PDO::PARAM_STR, 100);
 //bind the given values to match the query to insert into the table
     if (!empty($video_game_id))
         $newQuery->bindParam(':video_game_id', $video_game_id, PDO::PARAM_INT);

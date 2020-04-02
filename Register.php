@@ -8,28 +8,24 @@
 <center> <!-- making everything center starting tag-->
     <header>
         <nav>
-        <div>
-            <a href="Home.php">Home</a>
-        </div>
-        <?php
-        session_start();
-        if(empty($_SESSION['usersID'])) {
-            echo '<div><a href="Main.php">Input</a></div>';
-        }
-        ?>
-        <div>
-            <a href="Save.php">Database</a>
-        </div>
-        <?php
-        if(empty($_SESSION['usersID'])) {
-            echo
-            '<div ><a href = "login.php" > Login</a ></div >
-            <div ><a href = "Register.php" > Register</a ></div >';
-        }
-        else{
-            echo '<div ><a href = "logout.php" > Logout</a ></div >';
-        }
-        ?>
+            <div>
+                <a href="Home.php">Home</a>
+            </div>
+            <div><a href="Main.php">Input</a></div>
+            <div>
+                <a href="Save.php">Database</a>
+            </div>
+            <?php
+            session_start();
+            if(empty($_SESSION['usersID'])) {
+                echo
+                '<div><a href = "login.php">Login</a></div >
+            <div><a href = "Register.php">Register</a></div>';
+            }
+            else{
+                echo '<div><a href = "logout.php">Logout</a></div>';
+            }
+            ?>
         </nav>
     </header>
     <h1>Register</h1>

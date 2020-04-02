@@ -11,16 +11,12 @@
             <div>
                 <a href="Home.php">Home</a>
             </div>
-                <?php
-                session_start();
-                if(empty($_SESSION['usersID'])) {
-                    echo '<div><a href="Main.php">Input</a></div>';
-                }
-                ?>
+            <div><a href="Main.php">Input</a></div>
             <div>
                 <a href="Save.php">Database</a>
             </div>
             <?php
+            session_start();
             if(empty($_SESSION['usersID'])) {
                 echo
                '<div><a href = "login.php">Login</a></div >
@@ -44,7 +40,7 @@ $newQuery->execute();
 //execute the new variable
 $favGame = $newQuery->fetchAll();
 //fetch the new query from teams
-echo '<table border="1"><thead><th>Title</th><th>Console</th><th>Rating</th>';
+echo '<table border="1"><thead><th>Title</th><th>Console</th><th>Rating</th><th>Picture</th>';
 if(!empty($_SESSION['usersID']))
     echo '<th>Edit</th><th>Delete</th>';
 echo '</thead>';
@@ -52,8 +48,15 @@ echo '</thead>';
 foreach($favGame as $value){
     //for each heading from the pulled query, check for a value
     echo '<tr> <td>' . $value['title'] . '</td> <td>' . $value['console'] . '</td> <td>' . $value['rating'] . '</td>';
-if(!empty($_SESSION['usersID']))
-    echo '<td><a href = "Main.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmEdit();">Edit</a></td> <td><a href = "delete.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmDelete();">Delete</a></td></tr>';
+
+    if(!empty($value['pictures']))
+        echo '<td><img src="uploads/' . $value['pictures'] . '" alt="imageRecord" width="100" height="50"/>';
+    else
+        echo '<td></td>';
+
+    if(!empty($_SESSION['usersID']))
+    echo '<td><a href = "Main.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmEdit();">Edit</a></td> <td><a href = "delete.php?video_game_id=' . $value['video_game_id'] . '" onclick = "return confirmDelete();">Delete</a></td>';
+echo '</tr>';
     //<tr> tag goes around the values as a whole and each heading, it must be in a <td> tag, while connecting each tag with a period
 }
 $db = null;
