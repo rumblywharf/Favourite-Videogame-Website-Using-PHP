@@ -21,7 +21,7 @@ if(!empty($_GET['video_game_id'])){
     $title = $records['title'];
     $console = $records['console'];
     $rating = $records['rating'];
-    $picture = $records['photo'];
+    $picture = $records['pictures'];
     $file = $_FILES['file'];
     $db = null;
 }
@@ -111,11 +111,11 @@ if(!empty($_GET['video_game_id'])){
         <input name="video_game_id" value="<?php echo $video_game_id; ?>" type="hidden"/>
 
         <label for="file">Choose a file: </label>
-        <input type="file" id="file" name="file" value="<?php echo $file; ?>">
+        <input type="file" id="pictures" name="pictures">
 
         <?php
         if(!empty($picture)){
-            echo '<img src="uploads/' . $picture . '" alt="uploadedImage"/>';
+            echo '<img src="uploads/' . $picture . '" alt="uploadedImage" width="100" height="50"/>';
         }
         ?>
         <input type="submit"> <!-- creating a submit button-->

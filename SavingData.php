@@ -12,9 +12,9 @@ else {
     $title = $_POST['title'];
 //creating a saved variable for title
     $video_game_id = $_POST['video_game_id'];
-    $name = null;
+    $SessionPicName = null;
     $picture = $_FILES['pictures'];
-    $fileTempName = $file['tmp_name'];
+    $fileTempName = $picture['tmp_name'];
 
     $validate = true;
 //making a new validate boolean variable that is automatically true
@@ -30,16 +30,16 @@ else {
 
     if(!empty($fileTempName)) {
         $file = $_FILES['file'];
-        $fileName = $file['name'];
+        $fileName = $picture['name'];
         $fileType = mime_content_type($fileTempName);
-        $fileSize = $file['size'];
-        if ($fileType != 'uploads/jpeg' && $fileType != 'uploads/jpeg') {
-            echo 'Your image must be in the .jpg or .png file';
+        $fileSize = $picture['size'];
+        if ($fileType != 'image/jpeg' && $fileType != 'image/png' && $fileType != 'image/jpg') {
+            echo 'Your image must be in the .jpg, .jpeg or .png file';
             $validate = false;
             exit();
         }
-        $name = session_id() . '-' . $fileName;
-        move_uploaded_file($fileTempName, "uploads/$name");
+        $SessionPicName = session_id() . '-' . $fileName;
+        move_uploaded_file($fileTempName, "uploads/$SessionPicName");
 
     }
     if ($validate) {
@@ -59,7 +59,7 @@ else {
     $newQuery->bindParam(':title', $title, PDO::PARAM_STR, 100);
     $newQuery->bindParam(':console', $console, PDO::PARAM_STR, 500);
     $newQuery->bindParam(':rating', $rating, PDO::PARAM_STR, 10);
-    $newQuery->bindParam(':pictures', $picture, PDO::PARAM_STR, 100);
+    $newQuery->bindParam(':picture', $SessionPicName, PDO::PARAM_STR, 100);
 //bind the given values to match the query to insert into the table
     if (!empty($video_game_id))
         $newQuery->bindParam(':video_game_id', $video_game_id, PDO::PARAM_INT);
